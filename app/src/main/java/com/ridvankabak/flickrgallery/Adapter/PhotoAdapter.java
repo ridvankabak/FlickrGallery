@@ -47,13 +47,13 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.CardViewTasa
         String photoTitle= photo.getTitle();
         if(photo.getTitle().isEmpty()){
             holder.satirYazi.setText("Title boş gözüküyor!");
-            Log.e("title","boş");
-        }else{
 
+        }else{
             String msg;
             String titlee = photo.getTitle();
             String [] word = null;
             word = titlee.split(" ");
+
             if(word.length>10){
                 msg = word[0]+" "+word[1]+" "+word[2]+" "+word[3]+" "+word[4]+" "+word[5]+" "+word[6]+" "+word[7]+" ... <b>devamını gör</b>";
                 holder.satirYazi.setText(Html.fromHtml(msg));
@@ -61,28 +61,21 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.CardViewTasa
                 int titlechar = photo.getTitle().indexOf("?") + 1;
                 String title = photo.getTitle().substring(0,titlechar) +" ... <b>devamını gör</b>";
                 holder.satirYazi.setText(Html.fromHtml(title));
-                Log.e("title","?");
             }else if(photo.getTitle().contains("!")){
                 int titlechar = photo.getTitle().indexOf("!") + 1;
                 String title = photo.getTitle().substring(0,titlechar) +" ... <b>devamını gör</b>";
                 holder.satirYazi.setText(Html.fromHtml(title));
-                Log.e("title","!");
             }else if(photo.getTitle().contains(".")){
                 int titlechar = photo.getTitle().indexOf(".") + 1;
                 String title = photo.getTitle().substring(0,titlechar) +" ... <b>devamını gör</b>";
                 holder.satirYazi.setText(Html.fromHtml(title));
-                Log.e("title",".");
             }else if(photo.getTitle().contains(",")){
                 int titlechar = photo.getTitle().indexOf(",") + 1;
                 String title = photo.getTitle().substring(0,titlechar-1) +" ... <b>devamını gör</b>";
                 holder.satirYazi.setText(Html.fromHtml(title));
-                Log.e("title",",");
             }else{
                 holder.satirYazi.setText(photo.getTitle());
-                Log.e("title","title");
             }
-
-
         }
 
        holder.satirCard.setOnClickListener(view -> {

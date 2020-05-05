@@ -29,13 +29,11 @@ public class MainActivityModel implements MainActivityContract.Model {
             public void onResponse(Call<PhotoResponse> call, Response<PhotoResponse> response) {
                 Photos photos = response.body().getPhotos();
                 List<Photo> photo = photos.getPhoto();
-                Log.e(TAG,photo.toString());
                 onFinishedListener.onFinished(photo);
             }
 
             @Override
             public void onFailure(Call<PhotoResponse> call, Throwable t) {
-                Log.e(TAG, t.toString());
                 onFinishedListener.onFailure(t);
             }
         });
