@@ -88,37 +88,30 @@ public class DetailActivity extends AppCompatActivity implements DetailActivityC
         image.imageNo = String.valueOf(n);
         image.title = textViewTitle.getText().toString();
         db.imageDao().setImage(image);
-
-        List<Images> list = db.imageDao().getTumResimler();
-        for (int i =0;i<list.size();i++){
-            Log.e("***********","***********");
-            Log.e("imageNo",list.get(i).imageNo);
-            Log.e("title",list.get(i).title);
-        }
     }
 
     private void deleteImage() {
         String root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
-        String myDir = root + "/flickr_saved_images";
-        File file = new File(myDir, "Image-"+n+".jpg");
+        String dosya = root + "/flickr_saved_images";
+        File resim_yolu = new File(dosya, "Image-"+n+".jpg");
         Log.e("n",String.valueOf(n));
-        file.delete();
+        resim_yolu.delete();
 
     }
 
     private void saveImage(Bitmap finalBitmap) {
         String root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
-        File myDir = new File(root + "/flickr_saved_images");
-        myDir.mkdirs();
+        File dosya = new File(root + "/flickr_saved_images");
+        dosya.mkdirs();
         Random generator = new Random();
         n = 10000;
         n = generator.nextInt(n);
-        String fname = "Image-" + n + ".jpg";
-        File file = new File(myDir, fname);
-        if (file.exists())
-            file.delete();
+        String resim = "Image-" + n + ".jpg";
+        File resim_yolu = new File(dosya, resim);
+        if (resim_yolu.exists())
+            resim_yolu.delete();
         try {
-            FileOutputStream out = new FileOutputStream(file);
+            FileOutputStream out = new FileOutputStream(resim_yolu);
             finalBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
             out.flush();
             out.close();
@@ -126,12 +119,6 @@ public class DetailActivity extends AppCompatActivity implements DetailActivityC
         catch (Exception e) {
             e.printStackTrace();
         }
-
-        MediaScannerConnection.scanFile(this, new String[] { file.toString() }, null,
-                (path, uri) -> {
-                    Log.e("ExternalStorage", "Scanned " + path + ":");
-                    Log.e("ExternalStorage", "-> uri=" + uri);
-                });
     }
 
     @Override

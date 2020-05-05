@@ -31,18 +31,6 @@ public class FavoriteActivity extends AppCompatActivity implements FavoriteActiv
     List<Images> resimler;
     static AppDatabase db;
 
-    public static void deleteImageData(Images image) {
-        db.imageDao().setDeleteImage(image);
-
-        String root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
-        String myDir = root + "/flickr_saved_images";
-        File file = new File(myDir, "Image-"+image.imageNo+".jpg");
-        Log.e("n",String.valueOf(image.imageNo));
-        file.delete();
-
-        Log.e("Kalan",String.valueOf(db.imageDao().getTumResimler().size()));
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,9 +60,15 @@ public class FavoriteActivity extends AppCompatActivity implements FavoriteActiv
                 .allowMainThreadQueries()
                 .fallbackToDestructiveMigration()
                 .build();
+    }
 
+    public static void deleteImageData(Images image) {
+        db.imageDao().setDeleteImage(image);
 
-
+        String root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
+        String myDir = root + "/flickr_saved_images";
+        File file = new File(myDir, "Image-"+image.imageNo+".jpg");
+        file.delete();
     }
 
     @Override

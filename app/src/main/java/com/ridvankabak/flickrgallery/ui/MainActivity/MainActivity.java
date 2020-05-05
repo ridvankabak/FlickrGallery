@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     private RecyclerView rv;
     private ImageView imageViewFav;
     private GeometricProgressView pbLoading;
+
     PhotoAdapter adapter;
     List<Photo> photoList;
 
@@ -83,12 +84,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
             }
         });
 
-        imageViewFav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), FavoriteActivity.class));
-            }
-        });
+        imageViewFav.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), FavoriteActivity.class)));
 
     }
 

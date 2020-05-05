@@ -70,8 +70,6 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.CardViewTasa
             File f=new File(myDir, "Image-"+imageNo+".jpg");
             Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
             holder.satirImage.setImageBitmap(b);
-
-
         }
         catch (FileNotFoundException e)
         {

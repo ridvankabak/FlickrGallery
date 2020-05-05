@@ -27,7 +27,6 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.CardViewTasa
     public PhotoAdapter(MainActivity mainActivity, List<Photo> photoList) {
         this.mainActivity = mainActivity;
         this.photoList = photoList;
-
     }
 
     @NonNull
@@ -44,6 +43,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.CardViewTasa
         String photoCome = "https://farm"+photo.getFarm()+".staticflickr.com/"+photo.getServer()+"/"+photo.getId()+"_"+photo.getSecret()+".jpg";
 
         Picasso.get().load(photoCome).into(holder.satirImage);
+
         String photoTitle= photo.getTitle();
         if(photo.getTitle().isEmpty()){
             holder.satirYazi.setText("Title boş gözüküyor!");
